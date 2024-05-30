@@ -1,9 +1,9 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { updateCart } from '../utils/cartUtils';
+import {createSlice} from '@reduxjs/toolkit';
+import {updateCart} from '../utils/cartUtils';
 
 const initialState = localStorage.getItem('cart')
     ? JSON.parse(localStorage.getItem('cart'))
-    : { cartItems: [], shippingAddress: {}, paymentMethod: 'PayPal' };
+    : {cartItems: [], shippingAddress: {}, paymentMethod: 'PayPal'};
 
 const cartSlice = createSlice({
     name: 'cart',
@@ -12,7 +12,7 @@ const cartSlice = createSlice({
         addToCart: (state, action) => {
             // NOTE: we don't need user, rating, numReviews or reviews
             // in the cart
-            const { user, rating, numReviews, reviews, ...item } = action.payload;
+            const {user, rating, numReviews, reviews, ...item} = action.payload;
 
             const existItem = state.cartItems.find((x) => x._id === item._id);
 
@@ -37,9 +37,18 @@ const cartSlice = createSlice({
             state.shippingAddress = action.payload;
             localStorage.setItem('cart', JSON.stringify(state));
         },
+        savePaymentMethod: (state, action) => {
+            state.paymentMethod = action.payload;
+            localStorage.setItem('cart', JSON.stringify(state));
+        },
     },
 });
 
-export const { addToCart, removeFromCart, saveShippingAddress } = cartSlice.actions;
+export const {
+    addToCart,
+    removeFromCart,
+    saveShippingAddress,
+    savePaymentMethod,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;
