@@ -7,15 +7,14 @@ import CheckoutSteps from "../components/CheckoutSteps";
 import { saveShippingAddress } from '../slices/cartSlice';
 
 const ShippingScreen = () => {
-    const cart = useSelector((state) => state.cart);
-    const { shippingAddress } = cart;
+    const { shippingAddress } = useSelector((state) => state.cart);
 
-    const [address, setAddress] = useState(shippingAddress.address || '');
-    const [city, setCity] = useState(shippingAddress.city || '');
+    const [address, setAddress] = useState(shippingAddress?.address || '');
+    const [city, setCity] = useState(shippingAddress?.city || '');
     const [postalCode, setPostalCode] = useState(
-        shippingAddress.postalCode || ''
+        shippingAddress?.postalCode || ''
     );
-    const [country, setCountry] = useState(shippingAddress.country || '');
+    const [country, setCountry] = useState(shippingAddress?.country || '');
 
     const dispatch = useDispatch();
     const navigate = useNavigate();

@@ -8,6 +8,7 @@ import CheckoutSteps from '../components/CheckoutSteps';
 import Loader from '../components/Loader';
 import { useCreateOrderMutation } from '../slices/orderApiSlice';
 import { clearCartItems } from '../slices/cartSlice';
+import { addDecimals } from "../utils/cartUtils";
 
 const PlaceOrderScreen = () => {
     const navigate = useNavigate();
@@ -88,7 +89,7 @@ const PlaceOrderScreen = () => {
                                                     </Link>
                                                 </Col>
                                                 <Col md={4}>
-                                                    {item.qty} x ${item.price} = ${item.qty * item.price}
+                                                    {item.qty} x ${item.price} = ${addDecimals(item.qty * item.price)}
                                                 </Col>
                                             </Row>
                                         </ListGroup.Item>
