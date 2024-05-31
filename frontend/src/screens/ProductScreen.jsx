@@ -1,6 +1,7 @@
 import {useState} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 import {Link} from 'react-router-dom';
+import Meta from '../components/Meta';
 import {useDispatch, useSelector} from 'react-redux';
 import {
     Row,
@@ -77,7 +78,9 @@ const ProductScreen = () => {
                     {error?.data?.message || error.error}
                 </Message>
             ) : (
-                <> <Row>
+                <>
+                    <Meta title={product.name} description={product.description} />
+                    <Row>
                     <Col md={5}>
                         <Image src={product.image} alt={product.name} fluid/>
                     </Col>
