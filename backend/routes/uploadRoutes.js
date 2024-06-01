@@ -39,9 +39,11 @@ router.post('/', (req, res) => {
             return res.status(400).send({ message: err.message });
         }
 
+        const normalizedPath = path.posix.normalize(`/${req.file.path.replace(/\\/g, '/')}`);
+
         res.status(200).send({
             message: 'Image uploaded successfully',
-            image: `/${req.file.path}`,
+            image: normalizedPath,
         });
     });
 });
