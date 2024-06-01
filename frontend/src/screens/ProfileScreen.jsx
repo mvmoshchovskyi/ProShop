@@ -38,7 +38,6 @@ const ProfileScreen = () => {
         } else {
             try {
                 const res = await updateProfile({
-                    _id: userInfo._id,
                     name,
                     email,
                     password,
@@ -60,7 +59,7 @@ const ProfileScreen = () => {
                     <Form.Group className='my-2' controlId='name'>
                         <Form.Label>Name</Form.Label>
                         <Form.Control
-                            type='name'
+                            type='text'
                             placeholder='Enter name'
                             value={name}
                             onChange={(e) => setName(e.target.value)}
@@ -112,7 +111,7 @@ const ProfileScreen = () => {
                         {error?.data?.message || error.error}
                     </Message>
                 ) : (
-                    <Table striped table hover responsive className='table-sm'>
+                    <Table striped hover responsive className='table-sm'>
                         <thead>
                         <tr>
                             <th>ID</th>

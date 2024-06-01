@@ -30,11 +30,13 @@ const getProducts = asyncHandler(async (req, res) => {
 // @access  Public
 const getProductById = asyncHandler(async (req, res) => {
     const product = await Product.findById(req.params.id);
+
     if (product) {
         return res.json(product);
+    } else {
+        res.status(404);
+        throw new Error('Product not found');
     }
-    res.status(404);
-    throw new Error('Resource not found');
 });
 
 // @desc    Create a product

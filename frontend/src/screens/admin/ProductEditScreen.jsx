@@ -49,8 +49,8 @@ const ProductEditScreen = () => {
                 category,
                 description,
                 countInStock,
-            });
-            toast.success('product updated successfully');
+            }).unwrap();
+            toast.success('Product updated');
             refetch();
             navigate('/admin/productlist');
         } catch (err) {
@@ -93,7 +93,7 @@ const ProductEditScreen = () => {
                 {isLoading ? (
                     <Loader />
                 ) : error ? (
-                    <Message variant='danger'>{error}</Message>
+                    <Message variant='danger'>{error.data.message}</Message>
                 ) : (
                     <Form onSubmit={submitHandler}>
                         <Form.Group controlId='name'>
